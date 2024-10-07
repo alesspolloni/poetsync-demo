@@ -39,19 +39,22 @@
     <script>
         // Animazione del testo
      document.getElementById('read-aloud').addEventListener('click', function() {
-    console.log('Read aloud button clicked.');  // Messaggio di debug
+    console.log('Read aloud button clicked.');
     
     if ('speechSynthesis' in window) {
+        console.log('Speech synthesis supported.');
+        
         let utterance = new SpeechSynthesisUtterance();
         utterance.text = "This is where the magic happens. Poetry brought to life with blockchain and a touch of AI.";
         utterance.lang = 'en-US';  // Imposta la lingua corretta
         speechSynthesis.speak(utterance);
-        console.log('Speech synthesis is working.');
+        console.log('Speech synthesis speaking.');
     } else {
         alert('Speech Synthesis not supported in your browser.');
         console.log('Speech Synthesis not supported.');
     }
 });
+
 
 
 
