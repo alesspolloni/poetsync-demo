@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetsync Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #poem {
+            margin-top: 50px;
+            font-size: 1.5em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Poetsync</h1>
+    <div id="poem">
+        <p id="line1">This is where the magic happens,</p>
+        <p id="line2">Poetry brought to life with blockchain,</p>
+        <p id="line3">and a touch of AI.</p>
+    </div>
+    <button id="read-aloud">Read Poem Aloud</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        // Animazione del testo
+        gsap.from("#line1", {duration: 1, x: -100, opacity: 0});
+        gsap.from("#line2", {duration: 1, x: -100, opacity: 0, delay: 1});
+        gsap.from("#line3", {duration: 1, x: -100, opacity: 0, delay: 2});
+
+        // Funzione di voiceover (text-to-speech)
+        document.getElementById('read-aloud').addEventListener('click', function() {
+            let utterance = new SpeechSynthesisUtterance("This is where the magic happens. Poetry brought to life with blockchain and a touch of AI.");
+            speechSynthesis.speak(utterance);
+        });
+    </script>
+</body>
+</html>
