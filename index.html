@@ -36,12 +36,70 @@
     <button id="read-aloud">Read Poem Aloud</button>
 
     <script>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetsync Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #poem {
+            margin-top: 50px;
+            font-size: 1.5em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Poetsync</h1>
+    <div id="poem"></div>
+    <button id="read-aloud">Read Poem Aloud</button>
+
+    <script>
+        // Effetto macchina da scrivere
+        function typeWriter(text, element, delay = 50) {
+            let index = 0;
+            function type() {
+                if (index < text.length) {
+                    element.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM fully loaded and parsed.');
             document.getElementById('read-aloud').addEventListener('click', function() {
-                alert('Button Clicked!');
+                let poemText = "This is where the magic happens, Poetry brought to life with blockchain, and a touch of AI.";
+                let poemElement = document.getElementById('poem');
+                poemElement.innerHTML = '';  // Pulisce il contenuto precedente
+                typeWriter(poemText, poemElement);  // Avvia l'animazione
+
+                // Sintesi vocale
+                let utterance = new SpeechSynthesisUtterance(poemText);
+                utterance.lang = 'en-US';
+                speechSynthesis.speak(utterance);  // Avvia la lettura ad alta voce
             });
         });
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
