@@ -53,9 +53,12 @@
                 typeWriter(poemText, poemElement);  // Avvia l'animazione
 
                 // Sintesi vocale
-                let utterance = new SpeechSynthesisUtterance(poemText);
-                utterance.lang = 'en-US';
-                speechSynthesis.speak(utterance);  // Avvia la lettura ad alta voce
+               let utterance = new SpeechSynthesisUtterance(poemText);
+utterance.lang = 'en-US';
+utterance.pitch = 1.2;  // Cambia l'intonazione
+utterance.rate = 0.9;   // Riduce leggermente la velocità
+speechSynthesis.speak(utterance);
+  // Avvia la lettura ad alta voce
             });
         });
     </script>
