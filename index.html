@@ -45,9 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if ('speechSynthesis' in window) {
             console.log('Speech synthesis supported.');
             
+            // Cancella eventuali voci in sospeso
+            window.speechSynthesis.cancel();
+
             let utterance = new SpeechSynthesisUtterance();
             utterance.text = "This is where the magic happens. Poetry brought to life with blockchain and a touch of AI.";
             utterance.lang = 'en-US';  // Imposta la lingua corretta
+            
+            // Sincronizzazione dell'animazione del testo
+            gsap.from("#line1", {duration: 1, x: -100, opacity: 0, delay: 0});
+            setTimeout(function() { gsap.from("#line2", {duration: 1, x: -100, opacity: 0, delay: 0}); }, 3000);
+            setTimeout(function() { gsap.from("#line3", {duration: 1, x: -100, opacity: 0, delay: 0}); }, 6000);
+            
+            // Inizio del voiceover
             speechSynthesis.speak(utterance);
             console.log('Speech synthesis speaking.');
         } else {
@@ -56,8 +66,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
-
-
-
