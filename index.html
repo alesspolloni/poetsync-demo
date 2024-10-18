@@ -17,10 +17,7 @@
         #poem {
             margin-top: 50px;
             font-size: 1.5em;
-            font-style: italic; /* Corsivo per l'effetto stilografico */
-            overflow: hidden;  /* Assicura che il testo appaia gradualmente */
-            border-right: .15em solid black; /* Simula il cursore */
-            white-space: nowrap; /* Per evitare l'andata a capo del testo */
+            font-style: italic; /* Corsivo per dare l'effetto poesia */
         }
         button {
             padding: 10px 20px;
@@ -35,10 +32,10 @@
     <div id="poem"></div>
     <button id="read-aloud">Read Poem Aloud</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script>
+        // Effetto macchina da scrivere
         function typeWriter(text, element, delay = 100) {
-            element.innerHTML = ""; // Resetta il testo
+            element.innerHTML = ""; // Pulisce il testo
             let index = 0;
 
             function type() {
@@ -46,8 +43,6 @@
                     element.innerHTML += text.charAt(index);
                     index++;
                     setTimeout(type, delay);
-                } else {
-                    element.style.borderRight = "none"; // Rimuove il cursore alla fine del testo
                 }
             }
             type();
@@ -57,17 +52,17 @@
             document.getElementById('read-aloud').addEventListener('click', function() {
                 let poemText = "This is where the magic happens, Poetry brought to life with blockchain, and a touch of AI.";
                 let poemElement = document.getElementById('poem');
-                poemElement.style.borderRight = ".15em solid black"; // Aggiunge il cursore durante l'animazione
-                typeWriter(poemText, poemElement, 150); // Rallenta l'animazione per l'effetto stilografico
+                typeWriter(poemText, poemElement, 100); // Animazione macchina da scrivere
 
-                // Sintesi vocale - più lenta per enfatizzare la poesia
+                // Sintesi vocale
                 let utterance = new SpeechSynthesisUtterance(poemText);
                 utterance.lang = 'en-US';
                 utterance.pitch = 1.1;  // Regola l'intonazione per dare più enfasi
-                utterance.rate = 0.85;   // Riduce la velocità per dare più tempo tra i versi
+                utterance.rate = 0.9;   // Riduce leggermente la velocità per la lettura poetica
                 speechSynthesis.speak(utterance);
             });
         });
     </script>
 </body>
 </html>
+
